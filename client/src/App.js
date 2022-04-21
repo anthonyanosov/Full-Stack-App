@@ -10,8 +10,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/stores" element={<Stores />}/>
-        <Route path="/stores/:store_id/items" element={<StoreItems />}/>
+        <Route exact path="/stores" element={<Stores />}/>
+        <Route exact path="/stores/:store_id/items" element={<StoreItems />}/>
         <Route path="/stores/:store_id/items/:item_id" element={<Item />}/>
         <Route path="/stores/:store_id/items/new" element={<New />}/>
       </Routes>
