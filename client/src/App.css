@@ -1,0 +1,30 @@
+h1 {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 500% 500%;
+	animation: gradient 20s ease infinite;
+	height: 100vh;
+}
+
+input {
+    margin-top: 50px;
+    padding: 5px 8px;
+    font-size: 1.3em;
+    border: 2px solid black;
+    margin-top: 4px;
+  }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

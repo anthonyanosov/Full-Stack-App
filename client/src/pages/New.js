@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-function App() {
+function New() {
   const { store_id } = useParams();
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -12,16 +12,17 @@ function App() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch(`localhost:8080/stores/${store_id}/items`, {
+      let res = await fetch(`http://localhost:8080/stores/${store_id}/items`, {
         method: "POST",
+        headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
           name: name,
           quantity: quantity,
           price: price,
-          storeID: storeID,
+          storeID: storeID
         }),
       });
-      if (res.status === 200) {
+      if (res.status === 201) {
         setMessage("Item has been successfully created");
       } else {
         setMessage("Error creating item");
@@ -34,19 +35,19 @@ function App() {
   return (
     <div className="itemForm">
       <form onSubmit={handleSubmit}>
-        <label for="name">Item name:</label><br></br>
-        <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/><br></br>
-        <label for="quantity">Quantity:</label><br></br>
-        <input type="text" name="quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)}/><br></br>
-        <label for="price">Price:</label><br></br>
-        <input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/><br></br>
-        <label for="storeID">Store ID:</label><br></br>
-        <input type="text" name="storeID" value={storeID} onChange={(e) => setStoreID(e.target.value)}/><br></br>
+        <label>Item name: <input type="text" value={name} onChange={(e) => setName(e.target.value)}/></label>
+        <br></br>
+        <label>Quantity: <input type="text" value={quantity} onChange={(e) => setQuantity(e.target.value)}/></label>
+        <br></br>
+        <label>Price: <input type="text" value={price} onChange={(e) => setPrice(e.target.value)}/></label>
+        <br></br>
+        <label>Store ID: <input type="text" value={storeID} onChange={(e) => setStoreID(e.target.value)}/></label>
+        <br></br>
         <button type="submit">Submit</button>
       </form>
-      <div className="message">{message ? <p>{message}</p> : null}</div>
+      <div className="message"><p>{message}</p></div>
     </div>
   );
 }
 
-export default App;
+export default New;
