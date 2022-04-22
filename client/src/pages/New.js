@@ -14,6 +14,7 @@ function New() {
     try {
       let res = await fetch(`http://localhost:8080/stores/${store_id}/items`, {
         method: "POST",
+        mode: 'cors',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
           name: name,
